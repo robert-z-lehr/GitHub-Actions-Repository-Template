@@ -1,0 +1,35 @@
+name: Template Create Repositories
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when changes are pushed to the main branch
+
+jobs:
+  create-branches-and-readmes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Create branches (development, feature1, feature2, feature3)
+      - name: Create branches
+        run: |
+          git checkout -b development
+          git push origin development
+          git checkout -b feature1
+          git push origin feature1
+          git checkout -b feature2
+          git push origin feature2
+          git checkout -b feature3
+          git push origin feature3
+
+      # Create README files with the advice template
+      - name: Create README files
+        run: |
+          touch README.md
+          echo "To track automatically all the tools and scripts and dependencies you are using, install pipenv and npm for your Python and JavaScript files respectively. Depending on your OS, I recommend installing packages with one of these package managers: [pip](https://pip.pypa.io/en/stable/), [conda](https://docs.conda.io/en/latest/), or [Homebrew](https://brew.sh/)." > README.md
+          git add README.md
+          git commit -m "Add README with advice template"
+          git push origin main
