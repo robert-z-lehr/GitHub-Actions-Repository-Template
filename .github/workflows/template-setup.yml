@@ -9,15 +9,16 @@ jobs:
   create-branches-and-readmes:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16 for actions/setup-node
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
+
+      - name: Use Node.js 16 for actions/checkout
+        run: |
+          echo "::set-env name=NODE_VERSION::16"
+        shell: bash
 
       - name: Checkout code
         uses: actions/checkout@v2
