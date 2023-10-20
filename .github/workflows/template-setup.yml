@@ -17,6 +17,8 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v2
+        with:
+          node-version: 16  # Specify Node.js version 16 for checkout action
 
       # Create branches (development, feature1, feature2, feature3)
       - name: Create branches
