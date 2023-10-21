@@ -21,7 +21,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Create branches (development, feature1, feature2, feature3)
+      - name: Configure Git
+        run: |
+          git config --global user.email "robert.z.lehr@gmail.com"
+          git config --global user.name "Robert Lehr"
+        shell: bash
+
       - name: Create branches
         run: |
           git checkout -b development
@@ -33,7 +38,6 @@ jobs:
           git checkout -b feature3
           git push origin feature3
 
-      # Create README files with the advice template
       - name: Create README files
         run: |
           touch README.md
