@@ -3,11 +3,13 @@ name: Template Setup
 on:
   push:
     branches:
-      - main
+      - main # Trigger the workflow when changes are pushed to the main branch
 
 jobs:
   create-branches-and-readmes:
     runs-on: ubuntu-latest
+    env:
+      ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # Add your PAT secret here
 
     steps:
       - name: Set Node.js version
