@@ -16,9 +16,9 @@ jobs:
           node-version: 16
 
       - name: Use Node.js 16 for actions/checkout
-        run: |
-          echo "::set-env name=NODE_VERSION::16"
-        shell: bash
+        env:
+          NODE_VERSION: 16
+        run: echo "NODE_VERSION=16" >> $GITHUB_ENV
 
       - name: Checkout code
         uses: actions/checkout@v2
