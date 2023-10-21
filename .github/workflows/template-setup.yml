@@ -9,16 +9,14 @@ jobs:
   create-branches-and-readmes:
     runs-on: ubuntu-latest
 
+    env:
+      NODE_VERSION: 16
+
     steps:
       - name: Use Node.js 16 for actions/setup-node
         uses: actions/setup-node@v2
         with:
-          node-version: 16
-
-      - name: Use Node.js 16 for actions/checkout
-        env:
-          NODE_VERSION: 16
-        run: echo "NODE_VERSION=16" >> $GITHUB_ENV
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Checkout code
         uses: actions/checkout@v2
